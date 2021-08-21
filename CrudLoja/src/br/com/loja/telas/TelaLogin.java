@@ -17,14 +17,18 @@ public class TelaLogin extends javax.swing.JFrame {
         try{
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtEmail.getText());
-            pst.setString(2, txtSenha.getText());
-            
+            //pst.setString(2, txtSenha.getText());
+            String captura_senha = new String(txtSenha.getPassword());
+            pst.setString(2,captura_senha);
+                    
             rs = pst.executeQuery();
             
             if (rs.next()){
             //  JOptionPane.showMessageDialog(null,"Abrindo tela principal");
                 TelaPrincipal principal = new TelaPrincipal();
                 principal.setVisible(true);
+                this.dispose();  
+                conexao.close();
             }
             else{
                 JOptionPane.showMessageDialog(null,"Usuário/Senha inválidos");
