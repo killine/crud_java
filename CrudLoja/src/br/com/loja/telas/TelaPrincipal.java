@@ -31,7 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PC = new javax.swing.JDesktopPane();
+        pc = new javax.swing.JDesktopPane();
         lblUsuario = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
@@ -55,15 +55,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout PCLayout = new javax.swing.GroupLayout(PC);
-        PC.setLayout(PCLayout);
-        PCLayout.setHorizontalGroup(
-            PCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+        pc.setPreferredSize(new java.awt.Dimension(465, 465));
+
+        javax.swing.GroupLayout pcLayout = new javax.swing.GroupLayout(pc);
+        pc.setLayout(pcLayout);
+        pcLayout.setHorizontalGroup(
+            pcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 465, Short.MAX_VALUE)
         );
-        PCLayout.setVerticalGroup(
-            PCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 377, Short.MAX_VALUE)
+        pcLayout.setVerticalGroup(
+            pcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 465, Short.MAX_VALUE)
         );
 
         lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -91,6 +93,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenuCadastro.add(MenuCadastroOS);
 
         MenuCadastroUsuarios.setText("Usuários");
+        MenuCadastroUsuarios.setEnabled(false);
         MenuCadastroUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuCadastroUsuariosActionPerformed(evt);
@@ -101,6 +104,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Menu.add(MenuCadastro);
 
         MenuRelatorio.setText("Relatórios");
+        MenuRelatorio.setEnabled(false);
 
         MenuRelatorioServicos.setText("Serviços");
         MenuRelatorioServicos.addActionListener(new java.awt.event.ActionListener() {
@@ -144,8 +148,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(pc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUsuario)
                     .addComponent(lblData))
@@ -156,14 +160,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addComponent(lblUsuario)
                         .addGap(46, 46, 46)
-                        .addComponent(lblData)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addComponent(lblData))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,7 +202,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuOpcoesSairActionPerformed
 
     private void MenuCadastroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroUsuariosActionPerformed
-        // TODO add your handling code here:
+       
+        TelaUsuarios usuarios = new TelaUsuarios();
+        usuarios.setVisible(true);
+        pc.add(usuarios);
+        
     }//GEN-LAST:event_MenuCadastroUsuariosActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -251,13 +259,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCadastro;
     private javax.swing.JMenuItem MenuCadastroCliente;
     private javax.swing.JMenuItem MenuCadastroOS;
-    private javax.swing.JMenuItem MenuCadastroUsuarios;
+    public static javax.swing.JMenuItem MenuCadastroUsuarios;
     private javax.swing.JMenu MenuOpcoes;
     private javax.swing.JMenuItem MenuOpcoesSair;
-    private javax.swing.JMenu MenuRelatorio;
+    public static javax.swing.JMenu MenuRelatorio;
     private javax.swing.JMenuItem MenuRelatorioServicos;
-    private javax.swing.JDesktopPane PC;
     private javax.swing.JLabel lblData;
-    private javax.swing.JLabel lblUsuario;
+    public static javax.swing.JLabel lblUsuario;
+    private javax.swing.JDesktopPane pc;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,11 +24,25 @@ public class TelaLogin extends javax.swing.JFrame {
             rs = pst.executeQuery();
             
             if (rs.next()){
-            //  JOptionPane.showMessageDialog(null,"Abrindo tela principal");
-                TelaPrincipal principal = new TelaPrincipal();
-                principal.setVisible(true);
-                this.dispose();  
-                conexao.close();
+                
+                String perfil = rs.getString(6);
+                //System.out.println("perfil: " + perfil);
+                if (perfil.equals("admin")){
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.setVisible(true);
+                    TelaPrincipal.MenuCadastroUsuarios.setEnabled(true);
+                    TelaPrincipal.MenuRelatorio.setEnabled(true);
+                    TelaPrincipal.lblUsuario.setText(rs.getString(2));
+                    this.dispose();  
+                    conexao.close();
+                }
+                else{
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.setVisible(true);
+                    TelaPrincipal.lblUsuario.setText(rs.getString(2));
+                    this.dispose();  
+                    conexao.close();
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null,"Usuário/Senha inválidos");
@@ -74,7 +88,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setTitle("LOGIN");
         setResizable(false);
 
-        lblEmail.setText("email:");
+        lblEmail.setText("login:");
 
         lblSenha.setText("senha:");
 
@@ -97,21 +111,24 @@ public class TelaLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
+                .addComponent(lblStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addComponent(btnLogar)
+                .addGap(154, 154, 154))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblStatus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                        .addComponent(btnLogar)
-                        .addGap(154, 154, 154))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSenha)
-                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(txtSenha))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(70, 70, 70)
+                        .addComponent(lblSenha)
+                        .addGap(5, 5, 5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                    .addComponent(txtSenha))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
