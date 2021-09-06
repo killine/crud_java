@@ -3,13 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Ago-2021 às 14:27
+-- Tempo de geração: 06-Set-2021 às 04:34
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.4.9
 
---
--- loja_lo
---
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -82,18 +79,20 @@ INSERT INTO `ordem_servico` (`os`, `data_os`, `equipamento`, `defeito`, `servico
 CREATE TABLE `usuarios` (
   `iduser` int(11) NOT NULL,
   `usuario` varchar(50) NOT NULL,
-  `fone` varchar(15) DEFAULT NULL,
+  `fone` varchar(15) NOT NULL,
   `login` varchar(15) NOT NULL,
-  `senha` varchar(15) NOT NULL
+  `senha` varchar(15) NOT NULL,
+  `perfil` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`iduser`, `usuario`, `fone`, `login`, `senha`) VALUES
-(1, 'yuta', '1195555-9999', 'nakamoto', '127'),
-(2, 'chan', '1194444-9999', 'bangchan', 'skz');
+INSERT INTO `usuarios` (`iduser`, `usuario`, `fone`, `login`, `senha`, `perfil`) VALUES
+(1, 'yuta', '1195555-9999', 'nakamoto', '127', 'admin'),
+(2, 'chan', '1194444-9999', 'bangchan', 'skz', 'admin'),
+(3, 'jaemin', '11936405555', 'nana', 'czennie', 'user');
 
 --
 -- Índices para tabelas despejadas
@@ -139,7 +138,7 @@ ALTER TABLE `ordem_servico`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
