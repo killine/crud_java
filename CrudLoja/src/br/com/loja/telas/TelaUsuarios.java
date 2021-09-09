@@ -37,7 +37,7 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
                 txtFone.setText (null);
                 txtLogin.setText (null);
                 txtSenha.setText (null);
-                comboPerfil.setSelectedItem(null); 
+                
                 }
             }
             
@@ -45,8 +45,45 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
     }
+    
+    
+    private void adcionar(){
           
-        
+        String sql = "INSERT INTO usuarios (iduser, usuario, fone, login, senha, perfil) VALUES (?,?,?,?,?,?)";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString (1, txtId.getText());
+            pst.setString (2, txtNome.getText());
+            pst.setString (3, txtFone.getText());
+            pst.setString (4, txtLogin.getText());
+            String captura_senha = new String (txtSenha.getPassword());
+            pst.setString (5, captura_senha);
+            pst.setString (6, comboPerfil.getSelectedItem().toString());
+            
+            if(txtId.getText().isEmpty() || txtNome.getText().isEmpty() || txtFone.getText().isEmpty() ||
+                     txtLogin.getText().isEmpty() || txtSenha.getText().isEmpty()){
+                
+                JOptionPane.showMessageDialog(null, "Prencha todos os campos obrigatórios");
+            }
+            
+            else{
+                int resultado = pst.executeUpdate();
+                if(resultado > 0){
+                    
+                    JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso!");
+                    txtId.setText(null);
+                    txtNome.setText (null);
+                    txtFone.setText (null);
+                    txtLogin.setText (null);
+                    txtSenha.setText (null);                
+                }         
+            }
+        }
+        catch (Exception e){
+                JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
 
 
     @SuppressWarnings("unchecked")
@@ -101,6 +138,11 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
         btnAdcionar.setToolTipText("adcionar");
         btnAdcionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdcionar.setPreferredSize(new java.awt.Dimension(80, 80));
+        btnAdcionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdcionarActionPerformed(evt);
+            }
+        });
 
         btnSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/loja/icones/read.png"))); // NOI18N
         btnSelecionar.setToolTipText("selecionar");
@@ -204,6 +246,12 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
         consultar();
         
     }//GEN-LAST:event_btnSelecionarActionPerformed
+
+    private void btnAdcionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdcionarActionPerformed
+      
+        adcionar();
+        
+    }//GEN-LAST:event_btnAdcionarActionPerformed
         
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
