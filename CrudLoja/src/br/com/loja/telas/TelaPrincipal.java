@@ -175,7 +175,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MenuCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroClienteActionPerformed
-        // TODO add your handling code here:
+        
+        TelaClientes clientes = new TelaClientes();
+        clientes.setVisible(true);
+        pc.add(clientes);
+        
     }//GEN-LAST:event_MenuCadastroClienteActionPerformed
 
     private void MenuCadastroOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroOSActionPerformed
@@ -199,6 +203,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if (sair == JOptionPane.YES_NO_OPTION){
             System.exit(0);
         }
+        
     }//GEN-LAST:event_MenuOpcoesSairActionPerformed
 
     private void MenuCadastroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroUsuariosActionPerformed

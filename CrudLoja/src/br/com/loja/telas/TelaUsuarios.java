@@ -47,7 +47,7 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
     }
     
     
-    private void adcionar(){
+    private void adicionar(){
           
         String sql = "INSERT INTO usuarios (iduser, usuario, fone, login, senha, perfil) VALUES (?,?,?,?,?,?)";
         try {
@@ -136,7 +136,7 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
                 pst.setString (1, txtId.getText());
                 int apagado = pst.executeUpdate();
                 if(apagado>0){
-                    JOptionPane.showMessageDialog(null, "Usuário removido com sucesso");
+                    JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
                     txtId.setText(null);
                     txtNome.setText (null);
                     txtFone.setText (null);
@@ -323,7 +323,7 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
 
     private void btnAdcionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdcionarActionPerformed
       
-        adcionar();
+        adicionar();
         
     }//GEN-LAST:event_btnAdcionarActionPerformed
 
