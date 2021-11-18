@@ -149,6 +149,17 @@ public class TelaUsuarios extends javax.swing.JInternalFrame {
             } 
         }
     }
+    
+        private void limpar(){
+        
+        txtId.setText(null);
+        txtNome.setText (null);
+        txtFone.setText (null);
+        txtLogin.setText (null);
+        txtSenha.setText (null); 
+    
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

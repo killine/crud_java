@@ -3,6 +3,7 @@ package br.com.loja.telas;
 import java.sql.*;
 import br.com.loja.dal.ModuloConexao;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 
 public class TelaClientes extends javax.swing.JInternalFrame {
@@ -53,12 +54,12 @@ public class TelaClientes extends javax.swing.JInternalFrame {
     
     private void pesquisar_clientes(){
         
-        String sql = "SELECT * FROM clientes WHERE nomecli LIKE ?";
+        String sql = "SELECT idcli as id, nomecli as nome, endcli as endereço, fonecli as fone, emailcli as email"
+                + "WHERE nomecli LIKE?";
             
         try {
             pst = conexao.prepareStatement(sql);
-            pst.setString (1, txtBuscaCliente.getText() + "%");
-            rs = pst.executeQuery();
+            
             
             tblClientes.setModel(DbUtils.resultSetToTableModel(rs));  
         } 
@@ -139,6 +140,18 @@ public class TelaClientes extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, e);
             } 
         }
+    }
+    
+    private void limpar(){
+        
+        txtBuscaCliente.setText(null);
+        txtId.setText(null);
+        txtNome.setText (null);
+        txtEndereco.setText (null);
+        txtFone.setText (null);
+        txtEmail.setText (null);
+        ((DefaultTableModel) tblClientes.getModel()).setRowCount(0);
+    
     }
     
     @SuppressWarnings("unchecked")
